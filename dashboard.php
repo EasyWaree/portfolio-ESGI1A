@@ -9,40 +9,9 @@ requireLogin();
 $userId = getCurrentUserId();
 $userClass = new User();
 $user = $userClass->getUserById($userId);
-?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau de Bord - Portfolio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.php">
-                <i class="fas fa-briefcase me-2"></i>Portfolio
-            </a>
-            <div class="navbar-nav ms-auto">
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                        <i class="fas fa-user me-1"></i><?php echo sanitizeOutput(getCurrentUsername()); ?>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="portfolio.php?user=<?php echo $userId; ?>">Mon Portfolio</a></li>
-                        <?php if (isAdmin()): ?>
-                            <li><a class="dropdown-item" href="admin.php">Administration</a></li>
-                        <?php endif; ?>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="auth.php?action=logout">Déconnexion</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
 
+include __DIR__ . '/includes/header.php';
+?>
     <div class="container mt-4">
         <div class="row">
             <div class="col-12">
@@ -159,13 +128,6 @@ $user = $userClass->getUserById($userId);
             </div>
         </div>
     </div>
-    
-    <footer class="bg-dark text-light mt-5 py-3">
-        <div class="container text-center">
-            <p class="mb-0">&copy; <?php echo date('Y'); ?> Portfolio ESGI - Projet fonctionnel</p>
-        </div>
-    </footer>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    <?
+    include __DIR__ . '/includes/footer.php';
+    ?>
